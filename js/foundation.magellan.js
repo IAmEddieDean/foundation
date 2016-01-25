@@ -129,7 +129,8 @@
       'scrollme.zf.trigger': this._updateActive.bind(this)
     }).on('click.zf.magellan', 'a[href^="#"]', function(e) {
         e.preventDefault();
-        var arrival   = this.getAttribute('href');
+        
+        var arrival = this.getAttribute('href');
         _this.scrollToLoc(arrival);
     });
   };
@@ -140,15 +141,14 @@
    * @function
    */
   Magellan.prototype.scrollToLoc = function(loc){
-    var scrollPos = $(loc).offset().top - this.options.threshold / 2 - this.options.barOffset;
-
-    $(document.body).stop(true).animate({
+    var scrollPos = Math.round($(loc).offset().top - this.options.threshold / 2 - this.options.barOffset);
+    
+    $('html, body').stop().animate({
         scrollTop: scrollPos
       },
-      {
-        duration: this.options.animationDuration,
-        easiing: this.options.animationEasing
-     });
+        this.options.animationDuration,
+        this.options.animationEasing
+     );
   };
   /**
    * Calls necessary functions to update Magellan upon DOM change
