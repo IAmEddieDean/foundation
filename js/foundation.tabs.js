@@ -94,10 +94,10 @@ class Tabs {
     this._addKeyHandler();
     this._addClickHandler();
     this._setHeightMqHandler = null;
-    
+
     if (this.options.matchHeight) {
       this._setHeightMqHandler = this._setHeight.bind(this);
-      
+
       $(window).on('changed.zf.mediaquery', this._setHeightMqHandler);
     }
   }
@@ -132,7 +132,7 @@ class Tabs {
 
     this.$tabTitles.off('keydown.zf.tabs').on('keydown.zf.tabs', function(e){
       if (e.which === 9) return;
-      
+
 
       var $element = $(this),
         $elements = $element.parent('ul').children('li'),
@@ -206,7 +206,7 @@ class Tabs {
      * Fires when the plugin has successfully changed tabs.
      * @event Tabs#change
      */
-    this.$element.trigger('change.zf.tabs', [$target]);
+    this.$element.trigger('change.zf.tabs', [$target, $targetContent]);
   }
 
   /**
